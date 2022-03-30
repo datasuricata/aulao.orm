@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32126.317
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "aulao.orm.domain", "aulao.orm.domain\aulao.orm.domain.csproj", "{485E4FE8-76F2-4A1A-8D9B-B369473F5BD7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{485E4FE8-76F2-4A1A-8D9B-B369473F5BD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{485E4FE8-76F2-4A1A-8D9B-B369473F5BD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{485E4FE8-76F2-4A1A-8D9B-B369473F5BD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{485E4FE8-76F2-4A1A-8D9B-B369473F5BD7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2488E662-931A-4473-ACC3-21BC4E15A2BE}
+	EndGlobalSection
+EndGlobal
