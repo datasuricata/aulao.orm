@@ -1,6 +1,6 @@
 ﻿namespace aulao.orm.domain
 {
-    public class Cor
+    public class Cor : Entity
     {
         public string Nome { get; set; }
     }
