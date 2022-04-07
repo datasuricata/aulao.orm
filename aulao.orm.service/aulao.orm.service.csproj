@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\aulao.orm.domain\aulao.orm.domain.csproj" />
+    <ProjectReference Include="..\aulao.orm.infra\aulao.orm.infra.csproj" />
   </ItemGroup>
 
 </Project>

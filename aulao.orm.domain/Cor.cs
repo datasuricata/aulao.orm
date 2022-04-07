@@ -2,6 +2,15 @@
 {
     public class Cor : Entity
     {
+        public Cor()
+        {
+        }
+
+        public Cor(string nome)
+        {
+            Nome = nome;
+        }
+
         public string Nome { get; set; }
     }
 }

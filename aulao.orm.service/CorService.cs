@@ -1,5 +1,7 @@
 ﻿using aulao.orm.domain;
 using aulao.orm.domain.Interfaces;
+using aulao.orm.infra;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,29 +11,51 @@ namespace aulao.orm.service
 {
     public class CorService : ICorService
     {
-        public Task CriarAsync(string nome)
+        private readonly AppDbContext db;
+
+        public CorService(AppDbContext db)
         {
-            throw new NotImplementedException();
+            this.db = db;
         }
 
-        public Task EditarAsync(Guid id, string nome)
+        public async Task CriarAsync(string nome)
         {
-            throw new NotImplementedException();
+            var entity = new Cor(nome);
+
+            await db.AddAsync(entity);
+
+            await db.SaveChangesAsync();
         }
 
-        public Task ExcluirAsync(Guid id)
+        public async Task EditarAsync(Guid id, string nome)
         {
-            throw new NotImplementedException();
+            var entity = await PorIdAsync(id);
+
+            entity.Nome = nome;
+
+            db.Update(entity);
+
+            await db.SaveChangesAsync();
         }
 
-        public Task<List<Cor>> ListarAsync()
+        public async Task ExcluirAsync(Guid id)
         {
-            throw new NotImplementedException();
+            var entity = await PorIdAsync(id);
+
+            db.Remove(entity);
+
+            await db.SaveChangesAsync();
         }
 
-        public Task<Cor> PorIdAsync(Guid id)
+        public async Task<List<Cor>> ListarAsync()
         {
-            throw new NotImplementedException();
+            //return await db.Cor.FromSqlRaw("SELECT * FROM dbo.Cor").ToListAsync();
+            return await db.Cor.ToListAsync();
+        }
+
+        public async Task<Cor> PorIdAsync(Guid id)
+        {
+            return await db.Cor.FindAsync(id);
         }
     }
 }

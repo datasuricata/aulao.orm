@@ -32,5 +32,63 @@ namespace aulao.orm.api.Controllers
                 return BadRequest(new { Info = "Deu Ruim Manolo", e.Message });
             }
         }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> PorIdAsync(Guid id)
+        {
+            try
+            {
+                return Ok(await _service.PorIdAsync(id));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new { Info = "Deu Ruim Manolo", e.Message });
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CriarAsync([FromBody] Cor cor)
+        {
+            try
+            {
+                await _service.CriarAsync(cor.Nome);
+
+                return Ok(); //200 OK
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new { Info = "Deu Ruim Manolo", e.Message });
+            }
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> PutAsync([FromBody] Cor cor)
+        {
+            try
+            {
+                await _service.EditarAsync(cor.Id, cor.Nome);
+
+                return Ok(); //200 OK
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new { Info = "Deu Ruim Manolo", e.Message });
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteAsync(Guid id)
+        {
+            try
+            {
+                await _service.ExcluirAsync(id);
+
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new { Info = "Deu Ruim Manolo", e.Message });
+            }
+        }
     }
 }
