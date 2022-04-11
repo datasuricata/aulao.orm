@@ -53,6 +53,9 @@ namespace aulao.orm.api
             
             //injeção dos serviços 
             services.AddTransient<ICorService, CorService>();
+            services.AddTransient<ILenteGrauService, LenteGrauService>();
+            services.AddTransient<ILenteCaracteristicaService, LenteCaracteristicaService>();
+            services.AddTransient<ILenteService, LenteService>();
         }
 
 
