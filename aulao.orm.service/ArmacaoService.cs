@@ -13,6 +13,8 @@ namespace aulao.orm.service
     {
         private readonly AppDbContext db;
 
+
+        //teste
         public ArmacaoService(AppDbContext db)
         {
             this.db = db;
