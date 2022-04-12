@@ -32,6 +32,16 @@ namespace aulao.orm.service
 
         }
 
+        public Task ExcluirAsync(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<Armacao>> ListarAsync()
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<Armacao> PorIdAsync(Guid id)
         {
             return await db.Armacao.FindAsync(id);
