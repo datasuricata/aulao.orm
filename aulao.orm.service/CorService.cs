@@ -37,7 +37,6 @@ namespace aulao.orm.service
             else
             {
                 var mensagem = string.Concat(result.Errors.Select(x => $"{x.ErrorMessage}, "));
-
                 throw new Exception(mensagem);
             }
         }

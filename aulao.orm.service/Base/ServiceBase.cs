@@ -18,6 +18,7 @@ namespace aulao.orm.service.Base
 
         public async Task Commit()
         {
+           //if(existe mensagem de validacao == false) 
             await _uow.Commit();
         }
     }
