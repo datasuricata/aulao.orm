@@ -2,6 +2,11 @@
 {
     public class Armacao : Entity
     {
+        public Armacao()
+        {
+
+        }
+
         public Armacao(string marca, TipoMaterial material, Cor cor)
         {
             Marca = marca;

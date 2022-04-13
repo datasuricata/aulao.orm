@@ -1,20 +1,17 @@
+using aulao.orm.api.Middleware;
 using aulao.orm.domain.Interfaces;
 using aulao.orm.infra;
+using aulao.orm.infra.Persistence;
+using aulao.orm.infra.Transaction;
 using aulao.orm.service;
+using aulao.orm.service.Base;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace aulao.orm.api
 {
@@ -48,9 +45,12 @@ namespace aulao.orm.api
                 });
             });
 
-            //injeção do banco de dados
+            //injeção da infraestrutura
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration["ConnectionSQL"]));
-            
+            services.AddScoped<IServiceBase, ServiceBase>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+
             //injeção dos serviços 
             services.AddTransient<ICorService, CorService>();
             services.AddTransient<ILenteGrauService, LenteGrauService>();
@@ -69,6 +69,8 @@ namespace aulao.orm.api
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Chillibeans API V1");
             });
 
+            app.UseUnitOfWork();
+            
             app.UseHttpsRedirection();
 
             app.UseRouting();

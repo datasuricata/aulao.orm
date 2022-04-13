@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace aulao.orm.api.Controllers
 {
     [ApiController]
-    [Route("Lente")]
+    [Route("lente/grau")]
     public class LenteGrauController : ControllerBase
     {
         private readonly ILogger<LenteGrauController> _log;
@@ -51,7 +51,7 @@ namespace aulao.orm.api.Controllers
         {
             try
             {
-                await _service.CriarAsync(esquerda,direita);
+                await _service.CriarAsync(esquerda, direita);
 
                 return Ok();
             }
@@ -62,11 +62,11 @@ namespace aulao.orm.api.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> PutAsync([FromBody]Guid id, string direita, string esquerda)
+        public async Task<IActionResult> PutAsync([FromBody] Guid id, string direita, string esquerda)
         {
             try
             {
-                await _service.EditarAsync(id,esquerda,direita);
+                await _service.EditarAsync(id, esquerda, direita);
 
                 return Ok();
             }

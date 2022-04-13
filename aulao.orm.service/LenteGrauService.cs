@@ -20,9 +20,7 @@ namespace aulao.orm.service
         {
             var entity = new LenteGrau(esquerdo, direito);
             await db.AddAsync(entity);
-
             await db.SaveChangesAsync();
-
         }
 
         public async Task EditarAsync(Guid id, string esquerdo,string direito)
@@ -32,7 +30,6 @@ namespace aulao.orm.service
             entity.Esquerdo = esquerdo;
             db.Update(entity);
             await db.SaveChangesAsync();
-
         }
 
         public async Task ExcluirAsync(Guid id)

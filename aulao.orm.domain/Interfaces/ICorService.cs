@@ -9,8 +9,8 @@ namespace aulao.orm.domain.Interfaces
     {
         Task CriarAsync(string nome);
         Task EditarAsync(Guid id, string nome);
-        Task ExcluirAsync(Guid id);
+        //Task ExcluirAsync(Guid id);
         Task<Cor> PorIdAsync(Guid id);
-        Task<List<Cor>> ListarAsync();
+        Task<IEnumerable<Cor>> ListarAsync();
     }
 }

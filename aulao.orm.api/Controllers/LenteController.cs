@@ -10,32 +10,32 @@ using System.Threading.Tasks;
 namespace aulao.orm.api.Controllers
 {
     [ApiController]
-    [Route("Lente")]
+    [Route("lente")]
     public class LenteController : ControllerBase
     {
         private readonly ILogger<LenteController> _log;
         private readonly ILenteService _service;
 
-        public LenteController(ILogger<LenteController> log,ILenteService service)
+        public LenteController(ILogger<LenteController> log, ILenteService service)
         {
             _log = log;
             _service = service;
         }
         [HttpGet]
-        public async Task<IActionResult>ListaAsync()
+        public async Task<IActionResult> ListaAsync()
         {
             try
             {
                 return Ok(await _service.ListarAsync());
 
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 return BadRequest(new { Info = "Não funcionou", e.Message });
             }
         }
-            [HttpGet("{id}")]
-            public async Task<IActionResult> PorIdAsync(Guid id)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> PorIdAsync(Guid id)
         {
             try
             {
@@ -66,7 +66,7 @@ namespace aulao.orm.api.Controllers
         {
             try
             {
-                await _service.EditarAsync(lente.Id,lente);
+                await _service.EditarAsync(lente.Id, lente);
 
                 return Ok();
             }

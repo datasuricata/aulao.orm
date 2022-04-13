@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace aulao.orm.api.Controllers
 {
     [ApiController]
-    [Route("LenteCaracteristica")]
+    [Route("lente/caracteristica")]
     public class LenteCaracteristicaController : ControllerBase
     {
         private readonly ILogger<LenteCaracteristicaController> _log;
@@ -66,7 +66,7 @@ namespace aulao.orm.api.Controllers
         {
             try
             {
-                await _service.EditarAsync(lenteCaracteristica.Id,lenteCaracteristica.Caracteristica);
+                await _service.EditarAsync(lenteCaracteristica.Id, lenteCaracteristica.Caracteristica);
 
                 return Ok();
             }

@@ -18,9 +18,7 @@ namespace aulao.orm.service
 
         public async Task CriarAsync(string nome)
         {
-            //var entity = new Oculos(nome);
-            //await db.AddAsync(entity);
-            //await db.SaveChangesAsync();
+         
         }
     }
 }

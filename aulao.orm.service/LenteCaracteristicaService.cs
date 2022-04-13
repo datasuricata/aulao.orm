@@ -12,6 +12,12 @@ namespace aulao.orm.service
     public class LenteCaracteristicaService : ILenteCaracteristicaService
     {
         private readonly AppDbContext db;
+
+        public LenteCaracteristicaService(AppDbContext db)
+        {
+            this.db = db;
+        }
+
         public async Task CriarAsync(string caracteristica)
         {
             var entidy = new LenteCaracteristica(caracteristica);
@@ -33,7 +39,6 @@ namespace aulao.orm.service
             var entity = await PorIdAsync(id);
             db.Remove(entity);
             await db.SaveChangesAsync();
-
         }
 
         public async Task<List<LenteCaracteristica>> ListarAsync()

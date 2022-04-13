@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentValidation.AspNetCore" Version="10.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\aulao.orm.domain\aulao.orm.domain.csproj" />
     <ProjectReference Include="..\aulao.orm.infra\aulao.orm.infra.csproj" />
   </ItemGroup>

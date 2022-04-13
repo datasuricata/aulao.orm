@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace aulao.orm.domain
 {
-    public abstract class Entity
+    public class Entity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

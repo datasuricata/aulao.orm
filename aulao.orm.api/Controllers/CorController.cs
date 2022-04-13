@@ -3,7 +3,6 @@ using aulao.orm.domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace aulao.orm.api.Controllers
@@ -76,19 +75,19 @@ namespace aulao.orm.api.Controllers
             }
         }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteAsync(Guid id)
-        {
-            try
-            {
-                await _service.ExcluirAsync(id);
+        //[HttpDelete("{id}")]
+        //public async Task<IActionResult> DeleteAsync(Guid id)
+        //{
+        //    try
+        //    {
+        //        await _service.ExcluirAsync(id);
 
-                return Ok();
-            }
-            catch (Exception e)
-            {
-                return BadRequest(new { Info = "Deu Ruim Manolo", e.Message });
-            }
-        }
+        //        return Ok();
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        return BadRequest(new { Info = "Deu Ruim Manolo", e.Message });
+        //    }
+        //}
     }
 }

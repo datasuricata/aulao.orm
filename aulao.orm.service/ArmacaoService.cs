@@ -1,27 +1,25 @@
 ﻿using aulao.orm.domain;
 using aulao.orm.domain.Interfaces;
 using aulao.orm.infra;
-using System;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace aulao.orm.service
 {
-    internal class ArmacaoService :IArmacaoService
+    internal class ArmacaoService : IArmacaoService
     {
         private readonly AppDbContext db;
 
-
-        //teste
         public ArmacaoService(AppDbContext db)
         {
             this.db = db;
         }
         public async Task CriarAsync(string marca, TipoMaterial material, Cor cor)
         {
-            var entity = new Armacao(marca,material,cor);
+            var entity = new Armacao(marca, material, cor);
             await db.AddAsync(entity);
             await db.SaveChangesAsync();
         }
@@ -31,17 +29,18 @@ namespace aulao.orm.service
             entity.Marca = marca;
             entity.Material = material;
             entity.Cor = cor;
-
         }
 
-        public Task ExcluirAsync(Guid id)
+        public async Task ExcluirAsync(Guid id)
         {
-            throw new NotImplementedException();
+            var entity = await PorIdAsync(id);
+            db.Remove(entity);
+            await db.SaveChangesAsync();
         }
 
-        public Task<List<Armacao>> ListarAsync()
+        public async Task<List<Armacao>> ListarAsync()
         {
-            throw new NotImplementedException();
+            return await db.Armacao.ToListAsync();
         }
 
         public async Task<Armacao> PorIdAsync(Guid id)
