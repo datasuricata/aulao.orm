@@ -1,6 +1,7 @@
 ﻿using aulao.orm.domain;
 using aulao.orm.domain.Interfaces;
 using aulao.orm.infra;
+using aulao.orm.service.Validacoes;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -20,8 +21,13 @@ namespace aulao.orm.service
 
         public async Task CriarAsync(string caracteristica)
         {
-            var entidy = new LenteCaracteristica(caracteristica);
-            await db.AddAsync(entidy);
+            var entity = new LenteCaracteristica(caracteristica);
+
+            var validator = new LenteCaracteristicaValidator();
+
+            var result = validator.Validate(entity);
+
+            await db.AddAsync(entity);
             await db.SaveChangesAsync();
         }
 

@@ -20,6 +20,11 @@ namespace aulao.orm.service
         public async Task CriarAsync(string marca, TipoMaterial material, Cor cor)
         {
             var entity = new Armacao(marca, material, cor);
+
+            var validator = new ArmalcaoValidator();
+
+            var result = validator.Validate(entity);
+            
             await db.AddAsync(entity);
             await db.SaveChangesAsync();
         }
