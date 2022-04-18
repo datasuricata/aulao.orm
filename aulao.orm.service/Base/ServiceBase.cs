@@ -24,7 +24,7 @@ namespace aulao.orm.service.Base
         {
             //if(existe mensagem de validacao == false) 
 
-            if (_cor == _uow)
+            if (_cor is null)
             {
 
                 await _uow.Commit();
