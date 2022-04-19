@@ -1,5 +1,7 @@
 ﻿using aulao.orm.domain;
+using aulao.orm.domain.Exceptions;
 using aulao.orm.domain.Interfaces;
+using aulao.orm.service.Notificacoes;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -11,12 +13,14 @@ namespace aulao.orm.api.Controllers
     [Route("cor")]
     public class CorController : ControllerBase
     {
-        private readonly ILogger<CorController> _log;
+        private readonly INotificadorEvento _notify;
         private readonly ICorService _service;
-        public CorController(ILogger<CorController> log, ICorService service)
+        private readonly ILogger<CorController> _log;
+        public CorController(ILogger<CorController> log, ICorService service, INotificadorEvento notify)
         {
             _log = log;
             _service = service;
+            _notify = notify;
         }
 
         [HttpGet]
@@ -52,11 +56,14 @@ namespace aulao.orm.api.Controllers
             {
                 await _service.CriarAsync(cor.Nome);
 
+                if(!_notify.Validado)
+                    return BadRequest(_notify.Notificacoes);
+
                 return Ok(); //200 OK
             }
             catch (Exception e)
             {
-                return BadRequest(new { Info = "Deu Ruim Manolo", e.Message });
+                return BadRequest("falha interna, tente novamente");
             }
         }
 

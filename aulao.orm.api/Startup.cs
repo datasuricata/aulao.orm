@@ -5,6 +5,7 @@ using aulao.orm.infra.Persistence;
 using aulao.orm.infra.Transaction;
 using aulao.orm.service;
 using aulao.orm.service.Base;
+using aulao.orm.service.Notificacoes;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -47,9 +48,11 @@ namespace aulao.orm.api
 
             //injeção da infraestrutura
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration["ConnectionSQL"]));
+
             services.AddScoped<IServiceBase, ServiceBase>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            services.AddScoped<INotificadorEvento, NotificadorEvento>();
 
             //injeção dos serviços 
             services.AddTransient<ICorService, CorService>();

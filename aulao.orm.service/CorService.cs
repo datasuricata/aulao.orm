@@ -1,4 +1,5 @@
 ﻿using aulao.orm.domain;
+using aulao.orm.domain.Exceptions;
 using aulao.orm.domain.Interfaces;
 using aulao.orm.infra;
 using aulao.orm.infra.Persistence;
@@ -26,19 +27,9 @@ namespace aulao.orm.service
         {
             var entity = new Cor(nome);
 
-            var validator = new CorValidator();
+            _notificador.Validar(entity, new CorValidator());
 
-            var result = validator.Validate(entity);
-
-            if (result.IsValid)
-            {
-                await _repoCor.RegistrarAsync(entity);
-            }
-            else
-            {
-                var mensagem = string.Concat(result.Errors.Select(x => $"{x.ErrorMessage}, "));
-                throw new Exception(mensagem);
-            }
+            await _repoCor.RegistrarAsync(entity);
         }
 
         public async Task EditarAsync(Guid id, string nome)
