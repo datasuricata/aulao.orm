@@ -1,6 +1,7 @@
 ﻿using aulao.orm.domain;
 using aulao.orm.domain.Interfaces;
 using aulao.orm.infra;
+using aulao.orm.service.Validacoes;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,10 @@ namespace aulao.orm.service
         public async Task CriarAsync(string esquerdo, string direito)
         {
             var entity = new LenteGrau(esquerdo, direito);
+
+            var validator = new LenteGrauValidator();
+
+            var result = validator.Validate(entity);
             await db.AddAsync(entity);
             await db.SaveChangesAsync();
         }
